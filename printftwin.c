@@ -6,20 +6,20 @@
  * _printf -  produces output according to a format
  * @format: character string
  *
- *
  * Return: the number of characters printed
- * (excluding the null byte used to end output to strings)
+ * excluding the null byte used to end
+ * output to strings
  */
 
 int _printf(const char *format, ...)
 {
-	va_list p;
+	va_list p;/* the arguments*/
 
-	va_start(p, format);
+	va_start(p, format);/* initialize the argumemts and format*/
 
-	int y = 0;
-	char i;
-	char *k;
+	int y = 0;/* the counter*/
+	char i;/*the new variable assigned to 'c' */
+	char *k;/* the new pointer assigned to 's'*/
 
 	if (format != NULL)
 	{
