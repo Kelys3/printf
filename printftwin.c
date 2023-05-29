@@ -18,8 +18,10 @@ int _printf(const char *format, ...)
 	va_start(p, format);
 
 	int y = 0;
+	int j;
 	char i;
 	char *k;
+	unsigned int b;
 
 	if (format != NULL)
 	{
@@ -29,16 +31,16 @@ int _printf(const char *format, ...)
 				format++;
 
 			{
-				if (format == 'c')
+				else if (format == 'c')
 				{
 					i = (char)va_arg(p, int)
 						_putchar(i);
 						y++;
 				}
-				if (format == "s")
+				else if (format == "s")
 				{
 					k = va_arg(p, char *);
-`
+
 					while (k != '\0')
 					{
 						_putchar(k);
@@ -46,7 +48,46 @@ int _printf(const char *format, ...)
 						y++;
 					}
 				}
+				else if (format == 'd' || format == 'i')
+				{
+					j = va_ard(p, int);
+
+					if (j < 0)
+					{
+						_putchar('-');
+						j = -j;
+						y++;
+					}
+					y++;
+					print_integer(j);
+				}
+				else if (format == 'b')
+				{
+					b = va_arg(p, unsigned int);
+				_print_binary(b);
+				y++;
+				}
+				else if (format == 'u' 
+						|| format == 'o' 
+						|| format == 'x'
+						|| format == 'X')
+				{
+					digit = va_arg(p, unsigned int);
+
+					if (format == 'u')
+						base = 10;
+					else if (format == 'o')
+						base = 8;
+					else if (format == 'x' || format == 'X')
+						base = 16;
+
+					_print_integer(digit, base);
+					y++;
+				}
+
+
 			}
+
 		}
 	}
 	va_end(p);
