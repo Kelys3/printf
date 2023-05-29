@@ -79,8 +79,60 @@ int _print_binary(va_list p)
 	return (l);
 }
 
+/**/
+int _integerbase(va_list p, char arr)
+{
+	unsigned int num;
+	int digit, t, check, a;
+	int b = 0;
 
+	num = va_arg(p, unsigned int);
 
+	if (num == 0)
+	{
+		_putchar ('0'); 
+		return (1);
+	}
+	if (arr == 'u')
+	{
+		if (num == 0)
+		{
+			digit = 0;
+			t = num;
+			while (t != 0)
+			{
+				t = t/10;
+				digit++;
+			}
+			while (digit > 0)
+			{
+				check = 1;
+				for (a = 1; a < digit; a++)
+				{
+					check = check * 10;
+					d = num / check;
+					num = num % check;
+					_putchar('0' + d);
+					digit--;
+					b++;
+				}
+			}
+			else if (arr == 'o')
+			{
+				digit = 0;
+				t = num;
+				while (digit > 0)
+				{
+					check = 1;
 
-
-
+					for (a = 1; a < digit; a++)
+					{
+						check = check * 8;
+						d = num / check;
+						num = num % check
+						_putchar('0' + d);
+						digit--;
+						count++;
+					}
+				}
+				else if (arr == 'x'
