@@ -78,9 +78,3 @@ int _print_binary(va_list p)
 	}
 	return (l);
 }
-
-
-
-
-
-
