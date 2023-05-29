@@ -46,6 +46,12 @@ int _printf(const char *format, ...)
 						y++;
 					}
 				}
+				if (format == d)
+				{
+					t = int va_arg(p, int);
+					_putchar(t + '0');
+					t++;
+					y++;
 			}
 		}
 	}
