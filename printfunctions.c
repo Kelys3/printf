@@ -3,6 +3,11 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+/**
+ * print_integers - prints integers
+ * @p: the arguments 
+ * Return: the number of characters printed
+ */
 int print_integers(va_list p)
 {
 	int x;
