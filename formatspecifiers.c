@@ -24,7 +24,7 @@ int print_char(va_list l)
 int print_string(va_list l)
 {
 	char *str = NULL;
-	int ctr = 0, val;
+	int counter = 0, val;
 
 	str = va_arg(l, char*);
 
@@ -34,11 +34,53 @@ int print_string(va_list l)
 	}
 	while (*str != '\0')
 	{
-		val = write(STDOUT_FILENO, str, 1);
-		if (val == -1)
+		num = write(STDOUT_FILENO, str, 1);
+		if (num == -1)
 			return (-1);
 		str++;
-		ctr++;
+		counter++;
 	}
-	return (ctr);
+	return (counter);
 }
+
+/**
+ **/
+int print_integer(va_list l)
+{
+        int count = 0, m;
+        int k = va_arg(l, int);
+        unsigned int o = 1;
+        unsigned int num;
+        char v;
+
+        if (k < 0)
+        {
+                v = '-';
+                count += write(STDOUT_FILENO, &v, 1);
+                num = (unsigned long)(-1 * k);
+        }
+        else
+        {
+                num = (unsigned long)k;
+        }
+
+        k = num;
+
+        while (num >= 10)
+        {
+                num /= 10;
+                o *= 10;
+        }
+
+	 while (o >= 1)
+        {
+                m = (int)((k / o) % 10);
+                v = m + '0';
+                write(STDOUT_FILENO, &v, 1);
+                o /= 10;
+                count++;
+        }
+
+        return (count);
+}
+
