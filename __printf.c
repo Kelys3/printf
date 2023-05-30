@@ -9,8 +9,8 @@
 int _printf(const char *format, ...)
 {
 	va_list l;
-	int i = 0;
-	int counter = 0;
+	int k = 0;
+	int num = 0;
 
 	va_start(l, format);
 
@@ -19,28 +19,28 @@ int _printf(const char *format, ...)
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
 
-	while (format[i])
+	while (format[k])
 	{
 		if (format[i] == '%')
 		{
-			i++;
-			if (!format[i] || (format[i] == ' ' && !format[i + 1]))
+			k++;
+			if (!format[i] || (format[k] == ' ' && !format[k + 1]))
 			{
-				counter = -1;
+				num = -1;
 				break;
 			}
-			else if (format[i])
+			else if (format[k])
 			{
-				counter += parser(l, format[i - 1], format[i]);
+				num += parser(l, format[k - 1], format[k]);
 			}
 		}
 		else
 		{
-			write(1, &format[i], 1);
-			counter++;
+			write(1, &format[k], 1);
+			num++;
 		}
-		i++;
+		k++;
 	}
 	va_end(l);
-	return (counter);
+	return (num);
 }

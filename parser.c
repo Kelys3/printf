@@ -1,13 +1,14 @@
 #include "main.h"
+#include <unistd.h>
 
 /**
  * parser - parses arguments
  * @l: arguments
- * @k: arguments
+ * @h: arguments
  * @s: arguments
  * Return: number of characters
  */
-int parser(va_list l, char k, char s)
+int parser(va_list l, char h, char s)
 {
 	int num = 0;
 
