@@ -10,5 +10,6 @@ int _printf(const char *format, ...);
 int print_char(va_list l);
 int print_string(va_list l);
 int parser(va_list l, char k, char s);
+int print_integer(va_list l);
 
 #endif

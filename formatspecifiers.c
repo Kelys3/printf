@@ -44,43 +44,41 @@ int print_string(va_list l)
 }
 
 /**
- **/
+ * print_integer - prints integer
+ * @l: argument
+ * Return: number of chars printed
+ */
 int print_integer(va_list l)
 {
-        int count = 0, m;
-        int k = va_arg(l, int);
-        unsigned int o = 1;
-        unsigned int num;
-        char v;
+	int count = 0, m;
+	int k = va_arg(l, int);
+	unsigned int o = 1;
+	unsigned int num;
+	char v;
 
-        if (k < 0)
-        {
-                v = '-';
-                count += write(STDOUT_FILENO, &v, 1);
-                num = (unsigned long)(-1 * k);
-        }
-        else
-        {
-                num = (unsigned long)k;
-        }
-
-        k = num;
-
-        while (num >= 10)
-        {
-                num /= 10;
-                o *= 10;
-        }
-
-	 while (o >= 1)
-        {
-                m = (int)((k / o) % 10);
-                v = m + '0';
-                write(STDOUT_FILENO, &v, 1);
-                o /= 10;
-                count++;
-        }
-
-        return (count);
+	if (k < 0)
+	{
+		v = '-';
+		count += write(STDOUT_FILENO, &v, 1);
+		num = (unsigned long)(-1 * k);
+	}
+	else
+	{
+		num = (unsigned long)k;
+	}
+	k = num;
+	while (num >= 10)
+	{
+		num /= 10;
+		o *= 10;
+	}
+	while (o >= 1)
+	{
+		m = (int)((k / o) % 10);
+		v = m + '0';
+		write(STDOUT_FILENO, &v, 1);
+		o /= 10;
+		count++;
+	}
+	return (count);
 }
-
