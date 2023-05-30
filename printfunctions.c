@@ -8,12 +8,13 @@
  * @p: the arguments 
  * Return: the number of characters printed
  */
-int print_integers(va_list p)
+
+int print_integers(va_list *p)
 {
 	int x;
 	int count = 0;
 	int k = 1;
-	unsigned int m;
+	int m;
 	int d;
 
 	x = va_arg(p, int);
@@ -48,10 +49,10 @@ int print_integers(va_list p)
 
 
 /**/
-int _print_binary(va_list p)
-{
-	unsigned int c;
+int _print_binary(va_list *p)
+{ 
 	char s[32];
+	unsigned int c;
 	int l = 0;
 	int i;
 
@@ -59,8 +60,8 @@ int _print_binary(va_list p)
 
 	if (c == 0)
 	{
-		_putchar('0')
-			return (1);
+		_putchar('0');
+		return (1);
 	}
 
 	while (c > 0)
@@ -81,11 +82,14 @@ int _print_binary(va_list p)
 
 
 /**/
-int _integerbase(va_list p, char arr)
+int _integerbase(va_list *p)
 {
+	char arr;
 	unsigned int num;
 	int digit, t, check, a;
 	int b = 0;
+	int i;
+	int count, d;
 
 	num = va_arg(p, unsigned int);
 
@@ -118,10 +122,12 @@ int _integerbase(va_list p, char arr)
 					b++;
 				}
 			}
+		}
 			else if (arr == 'o')
 			{
 				digit = 0;
 				t = num;
+			}
 				while (digit > 0)
 				{
 					check = 1;
@@ -130,10 +136,35 @@ int _integerbase(va_list p, char arr)
 					{
 						check = check * 8;
 						d = num / check;
-						num = num % check
+						num = num % check;
 						_putchar('0' + d);
 						digit--;
 						count++;
 					}
 				}
-				else if (arr =
+				else if (arr == 'x' || arr == 'X')
+				{
+					const char *hexChars = (arr == 'X') ? "0123456789ABCDEF" : "0123456789abcdef";
+					digit = 0;
+					t = num;
+				}
+
+					while ( t != 0)
+					{
+						t /= 16;
+						digit++;
+					}
+					while (digit > 0)
+					{
+						check = 1;
+						for (a = 1; a < digit; i++)
+							check *= 16;
+						d = num / check;
+						num = num % check;
+						_putchar(hexChars[d]);
+						digit--;
+						count++;
+					}
+					return (count);
+	}
+}

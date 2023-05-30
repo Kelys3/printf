@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <unistd.h>
 
 /**
  * _printf -  produces output according to a format
@@ -13,54 +14,54 @@
 
 int _printf(const char *format, ...)
 {
-	va_list p;/* the arguments*/
-
-	va_start(p, format);/* initialize the argumemts and format*/
+	va_list p;
 
 	int y = 0;
 	int j;
-	char i;
+	char i, d, t;
 	char *k;
 	unsigned int b;
+	unsigned int digit, base;
 
-	int y = 0;/* the counter*/
-	char i;/*the new variable assigned to 'c' */
-	char *k;/* the new pointer assigned to 's'*/
+	va_start(p, format);
+
 
 	if (format != NULL)
 	{
-		for (; format != '\0'; format++)
+		for (; *format != '\0'; format++)
 		{
-			if (format == '%')
-				format++;
-
+			if (*format == '%')
 			{
-				else if (format == 'c')
+				format++;
+			}
+
+				else if (*format == 'c')
 				{
-					i = (char)va_arg(p, int)
+					i = (char)va_arg(p, int);
 						_putchar(i);
-						y++;
+					 	y++;
 				}
-				else if (format == "s")
+				else if (*format == 's')
 				{
 					k = va_arg(p, char *);
 
-					while (k != '\0')
+					while (*k != '\0')
 					{
-						_putchar(k);
+						_putchar(*k);
 						k++;
 						y++;
 					}
 				}
-				if (format == d)
+				if (*format == d)
 				{
-					t = int va_arg(p, int);
+					t = va_arg(p, int);
 					_putchar(t + '0');
 					t++;
 					y++;
-				else if (format == 'd' || format == 'i')
+				}
+				else if (*format == 'd' || *format == 'i')
 				{
-					j = va_ard(p, int);
+					j = va_arg(p, int);
 
 					if (j < 0)
 					{
@@ -69,36 +70,35 @@ int _printf(const char *format, ...)
 						y++;
 					}
 					y++;
-					print_integer(j);
+					print_integers(j);
 				}
-				else if (format == 'b')
+				else if (*format == 'b')
 				{
 					b = va_arg(p, unsigned int);
 				_print_binary(b);
 				y++;
 				}
-				else if (format == 'u' 
-						|| format == 'o' 
-						|| format == 'x'
-						|| format == 'X')
+				else if (*format == 'u' 
+						|| *format == 'o' 
+						|| *format == 'x'
+						|| *format == 'X')
 				{
 					digit = va_arg(p, unsigned int);
 
-					if (format == 'u')
+					if (*format == 'u')
 						base = 10;
-					else if (format == 'o')
+					else if (*format == 'o')
 						base = 8;
-					else if (format == 'x' || format == 'X')
+					else if (*format == 'x' || *format == 'X')
 						base = 16;
 
-					_print_integer(digit, base);
+					_integerbase(&digit, base);
 					y++;
 				}
-
 			}
-
 		}
 	}
 	va_end(p);
+
 	return (y);
 }
