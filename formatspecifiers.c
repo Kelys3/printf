@@ -8,11 +8,11 @@ include "main.h"
  */
 int print_char(va_list l)
 {
-        int val;
-        char c = va_arg(l, int);
+	int val;
+	char c = va_arg(l, int);
 
-        val = write(STDOUT_FILENO, &c, 1);
-        return (val);
+	val = write(STDOUT_FILENO, &c, 1);
+	return (val);
 }
 
 /**
@@ -23,23 +23,22 @@ int print_char(va_list l)
  */
 int print_string(va_list l)
 {
-        char *str = NULL;
-        int ctr = 0, val;
+	char *str = NULL;
+	int ctr = 0, val;
 
-        str = va_arg(l, char*);
+	str = va_arg(l, char*);
 
-         if (str == NULL)
-        {
-                str = "(null)";
-        }
-
-        while (*str != '\0')
-        {
-                val = write(STDOUT_FILENO, str, 1);
-                if (val == -1)
-                        return (-1);
-                str++;
-                ctr++;
-        }
-        return (ctr);
+	if (str == NULL)
+	{
+		str = "(null)";
+	}
+	while (*str != '\0')
+	{
+		val = write(STDOUT_FILENO, str, 1);
+		if (val == -1)
+			return (-1);
+		str++;
+		ctr++;
+	}
+	return (ctr);
 }
