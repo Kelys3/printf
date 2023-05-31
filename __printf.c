@@ -21,10 +21,10 @@ int _printf(const char *format, ...)
 
 	while (format[k])
 	{
-		if (format[i] == '%')
+		if (format[k] == '%')
 		{
 			k++;
-			if (!format[i] || (format[k] == ' ' && !format[k + 1]))
+			if (!format[k] || (format[k] == ' ' && !format[k + 1]))
 			{
 				num = -1;
 				break;

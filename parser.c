@@ -12,16 +12,14 @@ int parser(va_list l, char h, char s)
 {
 	int num = 0;
 
-	if (s == 'c')
-		num += print_char(l);
-	else if (s == 's')
-		num += print_string(l);
-	else if (s == 'd' || c == 'i')
-		num += print_integer(l);
-	else if (s == '%')
-	{
-		write(1, "%", 1);
-		num++;
-	}
+	if (s == 'b')
+                num += print_binary(l);
+      
+        else
+        {
+                write(1, &h, 1);
+                write(1, &s, 1);
+                num += 2;
+        }
 	return (num);
 }
