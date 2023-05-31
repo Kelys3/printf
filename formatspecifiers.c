@@ -1,5 +1,5 @@
-include "main.h"
-
+#include "main.h"
+#include <stdarg.h>
 /**
  * print_char - prints a character to stdout
  * @l: List of arguments
@@ -34,8 +34,8 @@ int print_string(va_list l)
 	}
 	while (*str != '\0')
 	{
-		num = write(STDOUT_FILENO, str, 1);
-		if (num == -1)
+		val = write(STDOUT_FILENO, str, 1);
+		if (val == -1)
 			return (-1);
 		str++;
 		counter++;
@@ -81,4 +81,32 @@ int print_integer(va_list l)
 		count++;
 	}
 	return (count);
+}
+
+int print_unsigned(va_list l)
+{
+        int cntr = 0, o;
+        unsigned int i = va_arg(l, unsigned int);
+        unsigned int count = 1;
+        unsigned int num;
+        char d;
+
+        num = i;
+
+        while (num >= 10)
+        {
+                num /= 10;
+                count *= 10;
+        }
+
+        while (count >= 1)
+        {
+                o = (unsigned int)((i / count) % 10);
+                d = o + '0';
+                write(STDOUT_FILENO, &d, 1);
+                count /= 10;
+                cntr++;
+        }
+
+        return (cntr);
 }

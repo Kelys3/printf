@@ -89,7 +89,7 @@ int print_hex(va_list l)
         {
                 while (o > 0)
                 {
-                        up_hex[j] = o % 16;
+                        low_hex[j] = o % 16;
                         o = o / 16;
                         cnter++;
                         j++;

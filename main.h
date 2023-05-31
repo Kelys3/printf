@@ -6,6 +6,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#define BUFFER_SIZE 1024
+
 int _printf(const char *format, ...);
 int print_char(va_list l);
 int print_string(va_list l);

@@ -16,7 +16,7 @@ int parser(va_list l, char h, char s)
 		num += print_char(l);
 	else if (s == 's')
 		num += print_string(l);
-	else if (s == 'd' || c == 'i')
+	else if (s == 'd' || s == 'i')
 		num += print_integer(l);
 	else if (s == '%')
 	{
@@ -32,13 +32,13 @@ int parser(va_list l, char h, char s)
 	else if (s == 'X')
 		num += print_HEX(l);
 	else if (s == 'u')
-		num += print_unsignedinteger(l);
+		num += print_unsigned(l);
 	else if (s == 'r')
 		num += print_reverse(l);
 	else if (s == 'R')
 		num += print_rot13(l);
 	else if (s == 'S')
-		num += print_S(l);
+		num += print_string(l);
 	else if (s == 'p')
 		num += print_p(l);
 	else
