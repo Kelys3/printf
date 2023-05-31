@@ -32,7 +32,7 @@ int parser(va_list l, char h, char s)
 	else if (s == 'X')
 		num += print_HEX(l);
 	else if (s == 'u')
-		num += print_unsigned(l);
+		num += print_unsignedint(l);
 	else if (s == 'r')
 		num += print_reverse(l);
 	else if (s == 'R')

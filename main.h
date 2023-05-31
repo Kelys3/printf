@@ -17,7 +17,7 @@ int print_binary(va_list l);
 int print_octal(va_list l);
 int print_hex(va_list l);
 int print_HEX(va_list l);
-int print_unsigned(va_list l);
+int print_unsignedint(va_list l);
 int print_reverse(va_list l);
 int print_rot13(va_list l);
 int print_S(va_list l);

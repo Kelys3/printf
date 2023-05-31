@@ -83,30 +83,36 @@ int print_integer(va_list l)
 	return (count);
 }
 
-int print_unsigned(va_list l)
+
+/**
+ * print_unsignedint - prints unsigned integers
+ * @l: arguments
+ *
+ * Return: number of chars printed
+ */
+int print_unsignedint(va_list l)
 {
-        int cntr = 0, o;
-        unsigned int i = va_arg(l, unsigned int);
-        unsigned int count = 1;
-        unsigned int num;
-        char d;
+	int cntr = 0, o;
+	unsigned int i = va_arg(l, unsigned int);
+	unsigned int count = 1;
+	unsigned int num;
+	char d;
 
-        num = i;
+	num = i;
 
-        while (num >= 10)
-        {
-                num /= 10;
-                count *= 10;
-        }
+	while (num >= 10)
+	{
+		num /= 10;
+		count *= 10;
+	}
 
-        while (count >= 1)
-        {
-                o = (unsigned int)((i / count) % 10);
-                d = o + '0';
-                write(STDOUT_FILENO, &d, 1);
-                count /= 10;
-                cntr++;
-        }
-
-        return (cntr);
+	while (count >= 1)
+	{
+		o = (unsigned int)((i / count) % 10);
+		d = o + '0';
+		write(STDOUT_FILENO, &d, 1);
+		count /= 10;
+		cntr++;
+	}
+	return (cntr);
 }
